@@ -15,6 +15,7 @@ Game::Game(unsigned int x = 800, unsigned int y = 600){
 	//this->ball = new Ball((float)(resolutionX / 2), (float)(resolutionY / 2));
 }
 
+
 void Game::PlayGame(){
 	
 	Ball ball((float)(resolutionX / 2), (float)(resolutionY / 2));
@@ -24,6 +25,7 @@ void Game::PlayGame(){
 		window->clear(Color::White);
 		ball.changePosition();
 		paddle.changePosition();
+		collisionTest(paddle, ball);
 		window->draw(paddle);
 		window->draw(ball);
 		window->display();
@@ -31,6 +33,22 @@ void Game::PlayGame(){
 		paddle.changePosition();
 		
 	}
+}
+
+template <class T1, class T2> bool Game::isIntersecting(T1& a, T2& b) {
+
+	return a.right() >= b.left() && a.left() <= b.right() && a.down() >= b.up() && a.up() <= b.down();
+
+}
+
+bool Game::collisionTest(Paddle& paddle, Ball& ball) {
+	if (!isIntersecting(paddle, ball)) return false;
+	else {
+		ball.moveUp();
+	}
+	/*if (ball.getPosition().x < paddle.getPosition.x) ball.moveLeft();
+	else ball.moveRight();
+	*/
 }
 
 Game::~Game(){

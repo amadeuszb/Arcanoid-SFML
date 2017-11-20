@@ -11,10 +11,17 @@ public:
 	Ball(float, float);
 	~Ball();
 	void changePosition();
-	virtual float left();
-	virtual float right();
-	virtual float up();
-	virtual float down();
+	float left();
+	float right();
+	float up();
+	float down();
+	Vector2f getPosition();
+	void moveUp(); //this functions allow to change velocity of the ball
+	void moveDown();
+	void moveLeft();
+	void moveRight();
+
+
 private:
 	float x, y; //resolution of screen 
 	Texture food; //texture of ball

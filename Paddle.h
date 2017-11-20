@@ -15,6 +15,7 @@ public:
 	Paddle() = delete;
 	~Paddle();
 	void changePosition();
+	Vector2f getPosition();
 	float left();
 	float right();
 	float up();

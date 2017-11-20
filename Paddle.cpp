@@ -53,6 +53,13 @@ float Paddle::down() {
 
 	return this->rectangle.getPosition().y + rectangle.getSize().y / 2.f;
 }
+
+Vector2f Paddle::getPosition() {
+
+	return rectangle.getPosition();
+
+}
+
 Paddle::~Paddle(){
 
 }

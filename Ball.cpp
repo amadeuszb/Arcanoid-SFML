@@ -43,7 +43,24 @@ float Ball::down() {
 	return this->circle.getPosition().y + circle.getRadius();
 }
 
+void Ball::moveDown(){
+	this->velocity.y = ballVelocity;
+}
+void Ball::moveUp() {
+	this->velocity.y = -ballVelocity;
+}
+void Ball::moveRight() {
+	this->velocity.x = -ballVelocity;
+}
+void Ball::moveLeft() {
+	this->velocity.x = -ballVelocity;
+}
 
+Vector2f Ball::getPosition() {
+
+	return circle.getPosition();
+
+}
 Ball::~Ball()
 {
 }
