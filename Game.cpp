@@ -20,14 +20,25 @@ void Game::PlayGame(){
 	
 	Ball ball((float)(resolutionX / 2), (float)(resolutionY / 2));
 	Paddle paddle(400, 550);
+	vector<Block> blocks;
+	for (unsigned int i = 0; i < blocksY; i++){ //this loop locates blocks on the gamefield
+		for (unsigned int j = 0; j < blocksX; j++) {
+			blocks.emplace_back((j + 1) * (blockWidth), (i + 2) * (blockHeight), blockWidth, blockHeight);
+		}
+	}
 	while (pressEvent.type != Event::Closed) {
 		
 		window->clear(Color::White);
 		ball.changePosition();
 		paddle.changePosition();
 		collisionTest(paddle, ball);
+		for(auto& block : blocks) collisionTest(block, ball);
 		window->draw(paddle);
 		window->draw(ball);
+		for (auto& block : blocks) //lecimy po wszystkich blokach z kontenera
+		{
+			window->draw(block);
+		}
 		window->display();
 		window->pollEvent(this->pressEvent);
 		paddle.changePosition();
@@ -49,6 +60,13 @@ bool Game::collisionTest(Paddle& paddle, Ball& ball) {
 	/*if (ball.getPosition().x < paddle.getPosition.x) ball.moveLeft();
 	else ball.moveRight();
 	*/
+}
+bool Game::collisionTest(Block& paddle, Ball& ball) {
+	if (!isIntersecting(paddle, ball)) return false;
+	else {
+		ball.moveUp();
+		paddle.destroy();
+	}
 }
 
 Game::~Game(){

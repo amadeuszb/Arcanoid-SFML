@@ -6,7 +6,7 @@ using namespace sf;
 class Object
 {
 public:
-	Object() = delete;
+	Object();
 	Object(unsigned int, unsigned int);
 	~Object();
 	void changePosition();
@@ -14,6 +14,7 @@ public:
 	float right();
 	float up();
 	float down();
+	Vector2f getPosition();
 
 protected:
 	Shape *shapeType;

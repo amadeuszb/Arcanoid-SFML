@@ -1,6 +1,12 @@
 #include "Object.h"
 
 
+Object::Object()
+{
+	resolutionX = 800;
+	resolutionY = 600;
+
+}
 
 Object::Object(unsigned int x = 800, unsigned int y = 600)
 {
